@@ -1,12 +1,18 @@
+from decimal import Decimal, getcontext, ROUND_HALF_UP
+
 # 観測が正しい確立 p
-p = 0.5
+p = 0.9
 # 正しく移動 q
-q = 1
+q = 0.7
 
 
-def print_ans(i, f):
-    print("{}: ".format(i), end='')
-    print(list(map(lambda x: round(x, 3), ans)))
+def print_ans(i, ans):
+    print("{}: [".format(i), end='')
+    for i in ans:
+        a = Decimal(str(i))
+        b = a.quantize(Decimal('0.001'), rounding=ROUND_HALF_UP)
+        print("{} ".format(b), end='')
+    print("]")
 
 
 def move(ans):
